@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moulagapp.TransactionView">
+   <children>
+      <HBox alignment="CENTER" layoutX="208.0" layoutY="31.0" prefHeight="100.0" prefWidth="325.0" spacing="40.0">
+         <children>
+            <Label text="Type :" />
+            <RadioButton fx:id="AddFund" mnemonicParsing="false" text="Ajout" />
+            <RadioButton fx:id="RemoveFund" mnemonicParsing="false" text="Retrait" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+      <VBox alignment="CENTER" layoutX="208.0" layoutY="111.0" prefHeight="129.0" prefWidth="326.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+               <children>
+                  <Label text="Montant :" />
+                  <TextField fx:id="AmountTextfield" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="326.0" spacing="19.0">
+               <children>
+                  <Label text="Description :" />
+                  <TextField fx:id="DescriptionTextfield" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="236.0" layoutY="241.0" prefHeight="200.0" prefWidth="297.0">
+         <children>
+            <Label text="Date : " />
+            <DatePicker fx:id="DateDatepicker" prefHeight="159.0" prefWidth="243.0" />
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" layoutX="165.0" layoutY="441.0" prefHeight="56.0" prefWidth="410.0" spacing="30.0">
+         <children>
+            <Label text="Libellé :" />
+            <ComboBox fx:id="WordingCombobox" prefWidth="150.0" promptText="Loisir" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="205.0" layoutY="497.0" prefHeight="66.0" prefWidth="360.0" spacing="150.0">
+         <children>
+            <Button fx:id="BackToButton" mnemonicParsing="false" text="Retour" onMouseClicked="#goToSolde"/>
+            <Button fx:id="RegisterButton" mnemonicParsing="false" text="Enregistrer" onMouseClicked="#register"/>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
