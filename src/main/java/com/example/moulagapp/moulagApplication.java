@@ -8,16 +8,51 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class moulagApplication extends Application {
+
+    private static moulagApplication application;
+    private Stage stage = new Stage();
+
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(moulagApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
+        application = this;
+        Scene scene = loadSoldeView();
+        this.stage.setTitle("Solde disponible");
+        this.stage.setScene(scene);
+        this.stage.show();
+    }
+
+    public Scene loadSoldeView() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(moulagApplication.class.getResource("solde-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        MoulagappViewModel viewModel = new MoulagappViewModel();
+        SoldeView soldeView = fxmlLoader.getController();
+        soldeView.setViewModel(viewModel);
+        return scene;
+    }
+
+    public Scene loadTransactionView() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(moulagApplication.class.getResource("transaction-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        MoulagappViewModel viewModel = new MoulagappViewModel();
+        TransactionView transactionView = fxmlLoader.getController();
+        transactionView.setViewModel(viewModel);
+        return scene;
+    }
+
+    public static moulagApplication getInstance()
+    {
+        return application;
     }
 
     public static void main(String[] args) {
         launch();
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }

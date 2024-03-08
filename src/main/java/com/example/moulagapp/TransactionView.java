@@ -1,11 +1,18 @@
 package com.example.moulagapp;
 
+import javafx.beans.binding.Binding;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.util.StringConverter;
+import javafx.util.converter.NumberStringConverter;
+
+import java.io.IOException;
 
 public class TransactionView {
 
@@ -33,4 +40,40 @@ public class TransactionView {
     @FXML
     private ComboBox<?> WordingCombobox;
 
+    private MoulagappViewModel viewModel;
+
+    @FXML
+    public void goToSolde() throws IOException {
+        Scene scene = moulagApplication.getInstance().loadSoldeView();
+        moulagApplication.getInstance().getStage().setScene(scene);
+        moulagApplication.getInstance().getStage().setTitle("Transaction");
+        moulagApplication.getInstance().getStage().show();
+    }
+
+    public void setViewModel(MoulagappViewModel viewModel)
+    {
+        this.viewModel = viewModel;
+        StringConverter<Number> converter = new NumberStringConverter();
+        Bindings.bindBidirectional(AmountTextfield.textProperty(), viewModel.amountProperty(), converter);
+        DescriptionTextfield.textProperty().bindBidirectional(viewModel.descriptionProperty());
+        DateDatepicker.valueProperty().bindBidirectional(viewModel.dateProperty());
+
+    }
+
+    public void initialize()
+    {
+        
+    }
+
+    @FXML
+    public void register() throws IOException {
+       int t = 0;
+       if(AddFund.isSelected())
+       {
+           t = 1;
+       }
+
+       viewModel.handleRegister(t);
+       goToSolde();
+    }
 }

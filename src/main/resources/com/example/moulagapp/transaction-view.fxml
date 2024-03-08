@@ -53,8 +53,8 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="205.0" layoutY="497.0" prefHeight="66.0" prefWidth="360.0" spacing="150.0">
          <children>
-            <Button fx:id="BackToButton" mnemonicParsing="false" text="Retour" />
-            <Button fx:id="RegisterButton" mnemonicParsing="false" text="Enregistrer" />
+            <Button fx:id="BackToButton" mnemonicParsing="false" text="Retour" onMouseClicked="#goToSolde"/>
+            <Button fx:id="RegisterButton" mnemonicParsing="false" text="Enregistrer" onMouseClicked="#register"/>
          </children>
       </HBox>
    </children>

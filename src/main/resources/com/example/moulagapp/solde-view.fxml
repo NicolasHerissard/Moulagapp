@@ -36,7 +36,7 @@
             </AnchorPane>
          </children>
       </VBox>
-      <TableView prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="historyTable" prefHeight="200.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="columnDate" prefWidth="75.0" resizable="false" text="Date" />
             <TableColumn fx:id="columnAmount" minWidth="0.0" prefWidth="139.0" resizable="false" text="Montant" />
@@ -46,7 +46,7 @@
       </TableView>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="AddTransaction" mnemonicParsing="false" text="Ajouter une transaction">
+            <Button fx:id="AddTransaction" mnemonicParsing="false" text="Ajouter une transaction" onMouseClicked="#goToTransaction">
                <font>
                   <Font size="20.0" />
                </font>
