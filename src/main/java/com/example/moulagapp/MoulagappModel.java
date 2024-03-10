@@ -93,4 +93,23 @@ public class MoulagappModel {
             throw new RuntimeException(e);
         }
     }
+
+    public int getType(int id)
+    {
+        try
+        {
+            String sql = "SELECT type FROM finance.transactions WHERE id = "+ id +"";
+            ResultSet res = stmt.executeQuery(sql);
+            while(res.next())
+            {
+                type = res.getInt("type");
+            }
+
+            return type;
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
 }

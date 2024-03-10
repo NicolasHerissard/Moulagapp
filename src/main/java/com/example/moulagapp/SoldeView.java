@@ -19,7 +19,7 @@ public class SoldeView {
     private Button AddTransaction;
 
     @FXML
-    private TableView<?> historyTable;
+    private TableView<Historique> historyTable;
 
     @FXML
     private TableColumn<?, ?> columnAmount;
@@ -43,12 +43,12 @@ public class SoldeView {
         this.viewModel = viewModel;
         StringConverter<Number> converter = new NumberStringConverter();
         Bindings.bindBidirectional(fundLabel.textProperty(), viewModel.fundProperty(), converter);
-        columnAmount.setCellValueFactory(new PropertyValueFactory<>("montant"));
-        columnCategory.setCellValueFactory(new PropertyValueFactory<>("categorie"));
-        columnDate.setCellValueFactory(new PropertyValueFactory<>("created_at"));
+        columnDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        columnAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
         columnDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        columnCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
 
-        //historyTable.itemsProperty().bind(viewModel.historyProperty());
+        historyTable.itemsProperty().bind(viewModel.historyProperty());
     }
 
     @FXML
