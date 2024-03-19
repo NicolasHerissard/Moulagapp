@@ -46,6 +46,7 @@ public class MoulagappViewModel {
         {
             fund.set(fund.get() + amount.get());
         }
+
         model.register(fund.get(), t, amount.get(), description.get(), date.get(), category.get());
     }
 

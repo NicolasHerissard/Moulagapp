@@ -7,23 +7,27 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moulagapp.TransactionView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="467.0" prefWidth="429.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.moulagapp.TransactionView">
    <children>
-      <HBox alignment="CENTER" layoutX="208.0" layoutY="31.0" prefHeight="100.0" prefWidth="325.0" spacing="40.0">
+      <HBox alignment="CENTER" layoutX="28.0" layoutY="30.0" prefHeight="100.0" prefWidth="325.0" spacing="40.0">
          <children>
             <Label text="Type :" />
-            <RadioButton fx:id="AddFund" mnemonicParsing="false" text="Ajout" />
-            <RadioButton fx:id="RemoveFund" mnemonicParsing="false" text="Retrait" />
+            <RadioButton fx:id="AddFund" mnemonicParsing="false" text="Ajout">
+               <toggleGroup>
+                  <ToggleGroup fx:id="radioButtonGroup" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="RemoveFund" mnemonicParsing="false" text="Retrait" toggleGroup="$radioButtonGroup" />
          </children>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </HBox>
-      <VBox alignment="CENTER" layoutX="208.0" layoutY="111.0" prefHeight="129.0" prefWidth="326.0">
+      <VBox alignment="CENTER" layoutX="35.0" layoutY="112.0" prefHeight="129.0" prefWidth="326.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                <children>
@@ -39,22 +43,22 @@
             </HBox>
          </children>
       </VBox>
-      <VBox alignment="CENTER" layoutX="236.0" layoutY="241.0" prefHeight="200.0" prefWidth="297.0">
+      <VBox alignment="CENTER" layoutX="58.0" layoutY="241.0" prefHeight="86.0" prefWidth="297.0">
          <children>
             <Label text="Date : " />
-            <DatePicker fx:id="DateDatepicker" prefHeight="159.0" prefWidth="243.0" />
+            <DatePicker fx:id="DateDatepicker" prefHeight="43.0" prefWidth="243.0" />
          </children>
       </VBox>
-      <HBox alignment="CENTER" layoutX="165.0" layoutY="441.0" prefHeight="56.0" prefWidth="410.0" spacing="30.0">
+      <HBox alignment="CENTER" layoutX="14.0" layoutY="338.0" prefHeight="56.0" prefWidth="410.0" spacing="30.0">
          <children>
             <Label text="Libellé :" />
-            <ComboBox fx:id="WordingCombobox" prefWidth="150.0" promptText="Loisir" />
+            <ComboBox fx:id="WordingCombobox" prefWidth="150.0" promptText="Aucun" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="205.0" layoutY="497.0" prefHeight="66.0" prefWidth="360.0" spacing="150.0">
+      <HBox alignment="CENTER" layoutX="39.0" layoutY="394.0" prefHeight="66.0" prefWidth="360.0" spacing="150.0">
          <children>
-            <Button fx:id="BackToButton" mnemonicParsing="false" text="Retour" onMouseClicked="#goToSolde"/>
-            <Button fx:id="RegisterButton" mnemonicParsing="false" text="Enregistrer" onMouseClicked="#register"/>
+            <Button fx:id="BackToButton" mnemonicParsing="false" onMouseClicked="#goToSolde" text="Retour" />
+            <Button fx:id="RegisterButton" mnemonicParsing="false" onMouseClicked="#register" text="Enregistrer" />
          </children>
       </HBox>
    </children>

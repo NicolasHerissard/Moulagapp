@@ -2,6 +2,7 @@ package com.example.moulagapp;
 
 import javafx.beans.binding.Binding;
 import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -38,7 +39,7 @@ public class TransactionView {
     private RadioButton RemoveFund;
 
     @FXML
-    private ComboBox<?> WordingCombobox;
+    private ComboBox<String> WordingCombobox;
 
     private MoulagappViewModel viewModel;
 
@@ -57,13 +58,16 @@ public class TransactionView {
         Bindings.bindBidirectional(AmountTextfield.textProperty(), viewModel.amountProperty(), converter);
         DescriptionTextfield.textProperty().bindBidirectional(viewModel.descriptionProperty());
         DateDatepicker.valueProperty().bindBidirectional(viewModel.dateProperty());
-
-
+        WordingCombobox.valueProperty().bindBidirectional(viewModel.categoryProperty());
     }
 
     public void initialize()
     {
-
+        WordingCombobox.setItems(FXCollections.observableArrayList(
+                "Alimentaire",
+                    "Loisir",
+                    "Essence"
+        ));
     }
 
     @FXML
@@ -72,6 +76,11 @@ public class TransactionView {
        if(AddFund.isSelected())
        {
            t = 1;
+       }
+
+       if(RemoveFund.isSelected())
+       {
+           t = 0;
        }
 
        viewModel.handleRegister(t);
