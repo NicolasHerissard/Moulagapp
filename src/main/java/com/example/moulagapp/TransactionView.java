@@ -5,11 +5,7 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 
@@ -41,7 +37,12 @@ public class TransactionView {
     @FXML
     private ComboBox<String> WordingCombobox;
 
+    @FXML
+    private ToggleGroup radioButtonGroup;
+
     private MoulagappViewModel viewModel;
+
+    ToggleGroup toggleGroup = new ToggleGroup();
 
     @FXML
     public void goToSolde() throws IOException {
@@ -59,6 +60,8 @@ public class TransactionView {
         DescriptionTextfield.textProperty().bindBidirectional(viewModel.descriptionProperty());
         DateDatepicker.valueProperty().bindBidirectional(viewModel.dateProperty());
         WordingCombobox.valueProperty().bindBidirectional(viewModel.categoryProperty());
+        AddFund.selectedProperty().bindBidirectional(viewModel.addFundProperty());
+        RemoveFund.selectedProperty().bindBidirectional(viewModel.removeFundProperty());
     }
 
     public void initialize()
@@ -68,22 +71,14 @@ public class TransactionView {
                     "Loisir",
                     "Essence"
         ));
+
+        AddFund.setToggleGroup(toggleGroup);
+        RemoveFund.setToggleGroup(toggleGroup);
     }
 
     @FXML
     public void register() throws IOException {
-       int t = 0;
-       if(AddFund.isSelected())
-       {
-           t = 1;
-       }
-
-       if(RemoveFund.isSelected())
-       {
-           t = 0;
-       }
-
-       viewModel.handleRegister(t);
+       viewModel.handleRegister();
        goToSolde();
     }
 }

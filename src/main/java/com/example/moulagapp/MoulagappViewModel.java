@@ -15,6 +15,8 @@ import java.util.ArrayList;
 public class MoulagappViewModel {
 
     private DoubleProperty fund = new SimpleDoubleProperty();
+    private BooleanProperty addFund = new SimpleBooleanProperty(false);
+    private BooleanProperty removeFund = new SimpleBooleanProperty(false);
     private StringProperty type = new SimpleStringProperty();
     private StringProperty description = new SimpleStringProperty();
     private DoubleProperty amount = new SimpleDoubleProperty();
@@ -36,15 +38,19 @@ public class MoulagappViewModel {
         timeline.play();
     }
 
-    public void handleRegister(int t)
+    public void handleRegister()
     {
-        if(t == 0)
+        int t = 0;
+        if(addFund.get())
         {
-            fund.set(fund.get() - amount.get());
-        }
-        else
-        {
+            t = 1;
             fund.set(fund.get() + amount.get());
+        }
+
+        if(removeFund.get())
+        {
+            t = 0;
+            fund.set(fund.get() - amount.get());
         }
 
         model.register(fund.get(), t, amount.get(), description.get(), date.get(), category.get());
@@ -132,5 +138,29 @@ public class MoulagappViewModel {
 
     public void setDate(LocalDate date) {
         this.date.set(date);
+    }
+
+    public boolean isAddFund() {
+        return addFund.get();
+    }
+
+    public BooleanProperty addFundProperty() {
+        return addFund;
+    }
+
+    public void setAddFund(boolean addFund) {
+        this.addFund.set(addFund);
+    }
+
+    public boolean isRemoveFund() {
+        return removeFund.get();
+    }
+
+    public BooleanProperty removeFundProperty() {
+        return removeFund;
+    }
+
+    public void setRemoveFund(boolean removeFund) {
+        this.removeFund.set(removeFund);
     }
 }
