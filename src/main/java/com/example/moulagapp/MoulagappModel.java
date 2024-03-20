@@ -98,7 +98,7 @@ public class MoulagappModel {
     {
         try
         {
-            String sql = "SELECT type FROM finance.transactions WHERE id = "+ id +"";
+            String sql = "SELECT type FROM finance.transactions WHERE id = "+ id;
             ResultSet res = stmt.executeQuery(sql);
             while(res.next())
             {

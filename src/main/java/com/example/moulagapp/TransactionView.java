@@ -81,4 +81,12 @@ public class TransactionView {
        viewModel.handleRegister();
        goToSolde();
     }
+
+    @FXML
+    protected void goToTransaction() throws IOException {
+        Scene scene = moulagApplication.getInstance().loadTransactionView();
+        moulagApplication.getInstance().getStage().setScene(scene);
+        moulagApplication.getInstance().getStage().setTitle("Transaction");
+        moulagApplication.getInstance().getStage().show();
+    }
 }

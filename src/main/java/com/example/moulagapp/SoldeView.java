@@ -116,6 +116,14 @@ public class SoldeView {
         moulagApplication.getInstance().getStage().show();
     }
 
+    @FXML
+    public void goToSolde() throws IOException {
+        Scene scene = moulagApplication.getInstance().loadSoldeView();
+        moulagApplication.getInstance().getStage().setScene(scene);
+        moulagApplication.getInstance().getStage().setTitle("Transaction");
+        moulagApplication.getInstance().getStage().show();
+    }
+
     private void cellColor(TableColumn<Historique, String> column)
     {
         column.setCellFactory(c -> new TableCell<Historique, String>() {
