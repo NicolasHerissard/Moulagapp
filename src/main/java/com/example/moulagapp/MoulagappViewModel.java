@@ -22,7 +22,7 @@ public class MoulagappViewModel {
     private DoubleProperty amount = new SimpleDoubleProperty();
     private ObjectProperty<String> category = new SimpleObjectProperty<>();
     private ObjectProperty<LocalDate> date = new SimpleObjectProperty<>();
-    private ListProperty<Historique> history = new SimpleListProperty(FXCollections.observableList(new ArrayList<>()));
+    private ListProperty<Historique> history = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<>()));
     private MoulagappModel model = new MoulagappModel();
 
     public MoulagappViewModel()

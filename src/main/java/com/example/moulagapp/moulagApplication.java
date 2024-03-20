@@ -27,6 +27,7 @@ public class moulagApplication extends Application {
         MoulagappViewModel viewModel = new MoulagappViewModel();
         SoldeView soldeView = fxmlLoader.getController();
         soldeView.setViewModel(viewModel);
+        scene.getStylesheets().add(moulagApplication.class.getResource("solde.css").toString());
         return scene;
     }
 
@@ -36,6 +37,7 @@ public class moulagApplication extends Application {
         MoulagappViewModel viewModel = new MoulagappViewModel();
         TransactionView transactionView = fxmlLoader.getController();
         transactionView.setViewModel(viewModel);
+        scene.getStylesheets().add(moulagApplication.class.getResource("transaction.css").toString());
         return scene;
     }
 
