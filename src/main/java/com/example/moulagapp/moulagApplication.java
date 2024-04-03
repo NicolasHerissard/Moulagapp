@@ -13,7 +13,7 @@ public class moulagApplication extends Application {
     private Stage stage = new Stage();
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         application = this;
         Scene scene = loadSoldeView();
         this.stage.setTitle("Solde disponible");
@@ -21,24 +21,37 @@ public class moulagApplication extends Application {
         this.stage.show();
     }
 
-    public Scene loadSoldeView() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(moulagApplication.class.getResource("solde-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        MoulagappViewModel viewModel = new MoulagappViewModel();
-        SoldeView soldeView = fxmlLoader.getController();
-        soldeView.setViewModel(viewModel);
-        scene.getStylesheets().add(moulagApplication.class.getResource("solde.css").toString());
-        return scene;
+    public Scene loadSoldeView() {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(moulagApplication.class.getResource("solde-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            MoulagappViewModel viewModel = new MoulagappViewModel();
+            SoldeView soldeView = fxmlLoader.getController();
+            soldeView.setViewModel(viewModel);
+            scene.getStylesheets().add(moulagApplication.class.getResource("solde.css").toString());
+            return scene;
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public Scene loadTransactionView() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(moulagApplication.class.getResource("transaction-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        MoulagappViewModel viewModel = new MoulagappViewModel();
-        TransactionView transactionView = fxmlLoader.getController();
-        transactionView.setViewModel(viewModel);
-        scene.getStylesheets().add(moulagApplication.class.getResource("transaction.css").toString());
-        return scene;
+    public Scene loadTransactionView() {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(moulagApplication.class.getResource("transaction-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            MoulagappViewModel viewModel = new MoulagappViewModel();
+            TransactionView transactionView = fxmlLoader.getController();
+            transactionView.setViewModel(viewModel);
+            scene.getStylesheets().add(moulagApplication.class.getResource("transaction.css").toString());
+            return scene;
+        }
+        catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 
     public static moulagApplication getInstance()

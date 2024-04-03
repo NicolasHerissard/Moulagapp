@@ -1,10 +1,10 @@
 package com.example.moulagapp;
 
+import com.mysql.cj.jdbc.exceptions.CommunicationsException;
+
 import javax.xml.transform.Result;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -30,7 +30,10 @@ public class MoulagappModel {
             Connection con = DriverManager.getConnection(url, "admin", "admin");
             Statement stmt = con.createStatement();
             return stmt;
-        } catch (Exception e) {
+        } catch (CommunicationsException e) {
+            System.out.println("échec de la connexion à la base de donnée");
+            return this.stmt;
+        } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -48,9 +51,25 @@ public class MoulagappModel {
 
             return fund;
         }
-        catch (Exception e)
+        catch (CommunicationsException e)
         {
-            throw new RuntimeException(e);
+            System.out.println("Accès à la base de donnée perdu");
+            return 0;
+        }
+        catch (SQLException e)
+        {
+            System.out.println("Problème avec la base de donnée");
+            try
+            {
+                if(stmt.isClosed())
+                {
+                    stmt = connectDB();
+                }
+            }
+            catch (SQLException err) {
+                throw new RuntimeException(err);
+            }
+            return 0;
         }
     }
 
@@ -76,9 +95,25 @@ public class MoulagappModel {
 
             return array;
         }
-        catch (Exception e)
+        catch (CommunicationsException e)
         {
-            throw new RuntimeException(e);
+            System.out.println("Accès à la base de donnée perdu");
+            return new ArrayList<>();
+        }
+        catch (SQLException e)
+        {
+            System.out.println("Problème avec la base de donnée");
+            try
+            {
+                if(stmt.isClosed())
+                {
+                    stmt = connectDB();
+                }
+            }
+            catch (SQLException err) {
+                throw new RuntimeException(err);
+            }
+            return new ArrayList<>();
         }
     }
 
@@ -88,28 +123,23 @@ public class MoulagappModel {
             String sql = "INSERT INTO finance.transactions (solde, type, description, montant, categorie, created_at) VALUES ('"+ fund +"', '"+ type +"', '"+ description +"', '"+ amount +"', '"+ category +"', '"+ date +"')";
             stmt.execute(sql);
         }
-        catch (Exception e)
+        catch (CommunicationsException e)
         {
-            throw new RuntimeException(e);
+            System.out.println("Accès à la base de donnée perdu");
         }
-    }
-
-    public int getType(int id)
-    {
-        try
+        catch (SQLException e)
         {
-            String sql = "SELECT type FROM finance.transactions WHERE id = "+ id;
-            ResultSet res = stmt.executeQuery(sql);
-            while(res.next())
+            System.out.println("Problème avec la base de donnée : " + e.getMessage());
+            try
             {
-                type = res.getInt("type");
+                if(stmt.isClosed())
+                {
+                    stmt = connectDB();
+                }
             }
-
-            return type;
-        }
-        catch (Exception e)
-        {
-            throw new RuntimeException(e);
+            catch (SQLException err) {
+                throw new RuntimeException(err);
+            }
         }
     }
 }

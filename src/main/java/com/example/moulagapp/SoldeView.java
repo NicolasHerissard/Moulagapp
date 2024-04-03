@@ -103,13 +103,7 @@ public class SoldeView {
     }
 
     @FXML
-    public void initialize()
-    {
-
-    }
-
-    @FXML
-    protected void goToTransaction() throws IOException {
+    protected void goToTransaction() {
         Scene scene = moulagApplication.getInstance().loadTransactionView();
         moulagApplication.getInstance().getStage().setScene(scene);
         moulagApplication.getInstance().getStage().setTitle("Transaction");
@@ -117,7 +111,7 @@ public class SoldeView {
     }
 
     @FXML
-    public void goToSolde() throws IOException {
+    public void goToSolde() {
         Scene scene = moulagApplication.getInstance().loadSoldeView();
         moulagApplication.getInstance().getStage().setScene(scene);
         moulagApplication.getInstance().getStage().setTitle("Transaction");

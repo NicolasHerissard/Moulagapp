@@ -10,6 +10,7 @@ import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 public class TransactionView {
 
@@ -45,7 +46,7 @@ public class TransactionView {
     ToggleGroup toggleGroup = new ToggleGroup();
 
     @FXML
-    public void goToSolde() throws IOException {
+    public void goToSolde() {
         Scene scene = moulagApplication.getInstance().loadSoldeView();
         moulagApplication.getInstance().getStage().setScene(scene);
         moulagApplication.getInstance().getStage().setTitle("Transaction");
@@ -77,13 +78,13 @@ public class TransactionView {
     }
 
     @FXML
-    public void register() throws IOException {
-       viewModel.handleRegister();
-       goToSolde();
+    public void register() {
+        viewModel.handleRegister();
+        goToSolde();
     }
 
     @FXML
-    protected void goToTransaction() throws IOException {
+    protected void goToTransaction() {
         Scene scene = moulagApplication.getInstance().loadTransactionView();
         moulagApplication.getInstance().getStage().setScene(scene);
         moulagApplication.getInstance().getStage().setTitle("Transaction");

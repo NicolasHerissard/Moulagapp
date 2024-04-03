@@ -7,8 +7,6 @@ import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.Duration;
-import javafx.util.converter.LocalDateStringConverter;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -30,8 +28,15 @@ public class MoulagappViewModel {
         Timeline timeline = new Timeline(new KeyFrame(
                 Duration.millis(1000),
                 e -> {
-                    fund.set(model.getFund());
-                    history.set(FXCollections.observableList(model.getHistory()));
+                    try
+                    {
+                        fund.set(model.getFund());
+                        history.set(FXCollections.observableList(model.getHistory()));
+                    }
+                    catch (NullPointerException err)
+                    {
+                        System.out.println("Le tableau ou la somme actuelle ne s'affiche pas");
+                    }
                 }
         ));
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -53,7 +58,14 @@ public class MoulagappViewModel {
             fund.set(fund.get() - amount.get());
         }
 
-        model.register(fund.get(), t, amount.get(), description.get(), date.get(), category.get());
+        try
+        {
+            model.register(fund.get(), t, amount.get(), description.get(), date.get(), category.get());
+        }
+        catch (NullPointerException e)
+        {
+            System.out.println("Erreur d'enregistrement des données");
+        }
     }
 
     public double getFund() {
